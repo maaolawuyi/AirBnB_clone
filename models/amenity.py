@@ -12,17 +12,18 @@ from os import environ
 
 storage_engine = environ.get("HBNB_TYPE_STORAGE")
 
+
 class Amenity(BaseModel, Base):
     """
-    Amenity class
+        Amenity class
     """
-
+    
     if (storage_engine == "db"):
         __tablename__ = "amenities"
         name = Column(String(128), nullable=False)
         place_amenities = relationship(
-                "Place",
-                secondary=place_amenity, back_populates="amenities")
+            "Place",
+            secondary=place_amenity, back_populates="amenities")
     else:
         name = ""
 
